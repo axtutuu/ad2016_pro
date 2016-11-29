@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rbenv'
+gem 'capistrano-rsync-bladrak'
+gem 'capistrano3-unicorn'

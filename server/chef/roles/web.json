@@ -5,7 +5,7 @@
   "chef_type": "role",
   "default_attributes": {
     "nginx": {
-      "domains": ["linebot_v1.atsuishi.xyz"],
+      "domains": ["linebotv1.atsuishi.xyz"],
       "root":    "/home/app/linebot_v1/current/public"
     },
     "rbenv": {
