@@ -1,10 +1,10 @@
 require "./common"
 require 'rest-client'
 tw = "http://jsoon.digitiminimi.com/twitter/count.json?url=%{url}"
-fb = "http://graph.facebook.com/?id=%{url}"
+fb = "https://graph.facebook.com/v2.7/?id=%{url}&access_token=339873939691747|T7SIVXJ5Ddn-wfOSnej3g6Cab1Y"
 hb = "http://api.b.st-hatena.com/entry.count?url=%{url}"
 
-UrlList.all.each do |url|
+UrlList.order("id DESC").each do |url|
 
   tw_res = RestClient.get(tw% {url: url.url})
   tw_j = JSON.parse(tw_res) if tw_res.present?

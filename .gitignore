@@ -1,2 +1,5 @@
 gems
 .env
+./server/authorized_keys
+./server/.env
+./server/gems
