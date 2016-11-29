@@ -1,0 +1,21 @@
+{
+  "name": "web",
+  "description": "",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "default_attributes": {
+    "nginx": {
+      "domains": ["linebot_v1.atsuishi.xyz"],
+      "root":    "/home/app/linebot_v1/current/public"
+    },
+    "rbenv": {
+      "versions": "2.3.1",
+      "global_version": "2.3.1"
+    }
+  },
+  "run_list": [
+      "nginx",
+      "rbenv",
+      "recipe[nginx::web]"
+  ]
+}

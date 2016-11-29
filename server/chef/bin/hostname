@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'net/ssh'
+
+# HOST = ARGV[0]
+# Net::SSH.start(HOST) do |ssh|
+#   p ssh.exec!("sudo hostname #{HOST}")
+# end
+
+HOSTS = ARGV
+HOSTS.each do |h|
+  Net::SSH.start(h) do |ssh|
+    p ssh.exec!("sudo hostname #{h}")
+  end
+end

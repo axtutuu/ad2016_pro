@@ -1,0 +1,3 @@
+default[:rbenv] = {
+  :users => [ "app" ]
+}

@@ -1,0 +1,63 @@
+# For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+user app;
+# ファイルディスクリプタ上限数
+worker_rlimit_nofile <%= node['nginx']['worker_rlimit_nofile'] %>;
+worker_processes     <%= node['nginx']['worker_processes'] %>;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+
+events {
+  worker_connections <%= node['nginx']['worker_connections'] %>;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    log_format ltsv   'host:$remote_addr\t'
+                      'user:$remote_user\t'
+                      'hostname:$hostname\t'
+                      'time:$time_iso8601\t'
+                      'method:$request_method\t'
+                      'uri:$request_uri\t'
+                      'protocol:$server_protocol\t'
+                      'status:$status\t'
+                      'size:$body_bytes_sent\t'
+                      'request_time:$request_time\t'
+                      'upstream_response_time:$upstream_response_time\t'
+                      'upstream_addr:$upstream_addr\t'
+                      'referer:$http_referer\t'
+                      'user_agent:$http_user_agent';
+
+
+    access_log  /var/log/nginx/access.log  ltsv;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    real_ip_header     X-Forwarded-For;
+
+    gzip                on;
+    gzip_http_version   1.1;
+    gzip_proxied        any;
+    gzip_disable        "MSIE [1-6]\.";
+    gzip_vary           on;
+    gzip_types text/css
+               text/plain
+               text/javascript
+               application/javascript
+               application/x-javascript
+               application/json;
+    gzip_comp_level 1;
+    gzip_min_length 128;
+
+    include /etc/nginx/conf.d/*.conf;
+}
