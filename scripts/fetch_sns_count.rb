@@ -19,6 +19,7 @@ UrlList.order("id DESC").each do |url|
   hatena_res = RestClient.get(hb% {url: url.url})
   hatena_share = JSON.parse(hatena_res) if hatena_res.present?
 
+  # user と tweet idも作成する
   p hatena_share
   SnsCount.create!(
     tw_share:     (tw_j.present? ? tw_j["count"] : nil),
