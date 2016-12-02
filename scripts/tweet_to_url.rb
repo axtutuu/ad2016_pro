@@ -2,10 +2,10 @@ require "./common"
 require "uri"
 require 'hugeurl'
 
-since_id = 18440
+since_id = 19776
 erros = []
 no_counts = ["www.instagram.com", "twitter.com", "t.co"]
-black_lists = ["https://t.co/FgSWfk3Ytp", "https://t.co/unWnK1ZdJZ", "https://t.co/KoovlcqGfG", "https://t.co/lBMpSaZ2JR", "https://t.co/R6I21tMNVf"]
+black_lists = ["https://t.co/FgSWfk3Ytp", "https://t.co/unWnK1ZdJZ", "https://t.co/KoovlcqGfG", "https://t.co/lBMpSaZ2JR", "https://t.co/R6I21tMNVf", "https://t.co/Ja1h0CxQ0W"]
 # tweetを途中から取得出来たほうが良い
 Tweet.where("id > ?", since_id).each do |t|
 # Tweet.all.each do |t|
