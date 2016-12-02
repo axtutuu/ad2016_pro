@@ -26,6 +26,7 @@ users.each.with_index(1) do |user, i|
     # tweet取得
     params.merge!({ max_id: max_id }) unless max_id.empty?
     response = endpoint.get("https://api.twitter.com/1.1/statuses/user_timeline.json?#{params.to_query}")
+
     # hashの追加
     JSON.parse(response.body).each do |j|
       Tweet.create!( id_str: j["id_str"], tweet: j["text"], user: user,created_at: j["created_at"])
