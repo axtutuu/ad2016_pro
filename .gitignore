@@ -3,3 +3,4 @@ gems
 ./server/authorized_keys
 ./server/.env
 ./server/gems
+deploy/log/capistrano.log
