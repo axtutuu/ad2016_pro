@@ -1,6 +1,8 @@
 class SnsCounts < ActiveRecord::Migration[5.0]
   def change
     create_table :sns_counts do |t|
+      t.string  :user
+      t.string  :tweet_id
       t.text    :url
       t.integer :fb_share
       t.integer :fb_comment

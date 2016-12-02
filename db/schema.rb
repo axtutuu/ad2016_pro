@@ -13,6 +13,8 @@
 ActiveRecord::Schema.define(version: 20161126110951) do
 
   create_table "sns_counts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string  "user"
+    t.string  "tweet_id"
     t.text    "url",          limit: 65535
     t.integer "fb_share"
     t.integer "fb_comment"
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(version: 20161126110951) do
   end
 
   create_table "url_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.string "tweet_id"
+    t.string "hostname"
     t.string "user"
     t.text   "url",        limit: 65535
     t.string "created_at"

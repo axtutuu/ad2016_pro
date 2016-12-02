@@ -21,10 +21,14 @@ UrlList.order("id DESC").each do |url|
 
   # user と tweet idも作成する
   p hatena_share
+  p (fb_j.present? && fb_j["share"].present? ? fb_j["share"]["share_count"]   : nil)
+
   SnsCount.create!(
-    tw_share:     (tw_j.present? ? tw_j["count"] : nil),
-    fb_share:     (fb_j.present? && fb_j["share"].present? ? fb_j["share"]["share_count"]   : nil),
-    fb_comment:   (fb_j.present? && fb_j["share"].present? ? fb_j["share"]["comment_count"] : nil),
+    user:         url.user,
+    tweet_id:     url.tweet_id,
+    tw_share:     (tw_j.present? ? tw_j["count"] : 0),
+    fb_share:     (fb_j.present? && fb_j["share"].present? ? fb_j["share"]["share_count"]   : 0),
+    fb_comment:   (fb_j.present? && fb_j["share"].present? ? fb_j["share"]["comment_count"] : 0),
     hatena_share: hatena_share,
     url:          (tw_j.present? ? tw_j["url"] : nil),
     created_at:   url.created_at
