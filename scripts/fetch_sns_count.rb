@@ -4,8 +4,7 @@ tw = "http://jsoon.digitiminimi.com/twitter/count.json?url=%{url}"
 fb = "https://graph.facebook.com/v2.7/?id=%{url}&access_token=339873939691747|T7SIVXJ5Ddn-wfOSnej3g6Cab1Y"
 hb = "http://api.b.st-hatena.com/entry.count?url=%{url}"
 
-UrlList.order("id DESC").each do |url|
-
+UrlList.where("id > ?", 2004).each do |url|
   tw_res = RestClient.get(tw% {url: url.url})
   tw_j = JSON.parse(tw_res) if tw_res.present?
 
@@ -16,8 +15,7 @@ UrlList.order("id DESC").each do |url|
     p e
   end
 
-  hatena_res = RestClient.get(hb% {url: url.url})
-  hatena_share = JSON.parse(hatena_res) if hatena_res.present?
+  hatena_share = RestClient.get(hb% {url: url.url}).body
 
   # user と tweet idも作成する
   p hatena_share
